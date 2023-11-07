@@ -1,17 +1,17 @@
 const { Client } = require("pg");
 
-let DB_URI;
+const DB_URI = "postgresql://postgres:password@localhost:5432/myhealth"; 
 
-if (process.env.NODE_ENV === "test") {
-  DB_URI = "postgresql:///myhealth_test";
-} else {
-  DB_URI = "postgresql:///myhealth";
-}
-
-let db = new Client({
+const db = new Client({
   connectionString: DB_URI
 });
 
-db.connect();
+db.connect()
+  .then(() => {
+    console.log("Connected to PostgreSQL database");
+  })
+  .catch((err) => {
+    console.error("Error connecting to the database:", err);
+  });
 
 module.exports = db;

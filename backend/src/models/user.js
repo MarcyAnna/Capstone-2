@@ -35,11 +35,7 @@ class User {
 
     static async findAll() {
         const result = await db.query(
-              `SELECT 
-                      first_name AS "firstName",
-                      last_name AS "lastName",
-                      email"
-               FROM users`,
+              `SELECT * FROM users`,
         );
     
         return result.rows;
@@ -47,4 +43,4 @@ class User {
 
 }
 
-modules.exports = User;
+module.exports = User;

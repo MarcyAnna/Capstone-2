@@ -35,6 +35,7 @@ app.use(
       directives: {
         "default-src": ["'none'"],
         "frame-ancestors": ["'none'"],
+        "style-src": ["'unsafe-inline'"],
       },
     },
     frameguard: {
