@@ -12,10 +12,12 @@ const usersRouter = express.Router();
  **/
 
 usersRouter.get("/:id", validateAccessToken, async function (req, res, next) {
+   
     try {
       const user = await User.getUser(req.params.id);
       return res.json({ user });
     } catch (err) {
+  
       return next(err);
     }
   });
