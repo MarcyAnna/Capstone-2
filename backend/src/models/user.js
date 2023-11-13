@@ -20,26 +20,43 @@ class User {
         const user = result.rows[0];
         return user;
     }
-    //get a user profile using id from authentication token
+    //get a user profile and associated conditions using id from authentication token 
     static async getUser(id) {
         const result = await db.query(
             `SELECT first_name AS "firstName",
-            last_name AS "lastName"
+            last_name AS "lastName",
+            comments AS user_comments
             FROM users WHERE id = $1`,
             [id],
         );
         const user = result.rows[0];
 
-        return user;
+      if (user) {
+        const userConditions = await db.query(
+            `SELECT c.name AS condition_name 
+            FROM users_conditions AS uc
+            LEFT JOIN conditions AS c ON uc.condition_id = c.id
+            WHERE uc.user_id = $1`,
+            [id]);
+
+        user.conditions = userConditions.rows.map(row => row.condition_name);
     }
 
-    static async findAll() {
-        const result = await db.query(
-              `SELECT * FROM users`,
-        );
-    
-        return result.rows;
-      }
+        return user;
+    }
+    //add a condition to user profile
+    static async addCondition(user_id, condition_id) {
+        const result = await db.query(`
+        INSERT INTO users_conditions 
+        (user_id, condition_id) VALUES 
+        ($1, $2)`,
+        [user_id, condition_id]);
+        
+        const newCondition = result.rows[0];
+        return newCondition;     
+        
+    }
+
 
 }
 

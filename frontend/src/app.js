@@ -8,8 +8,8 @@ import { CallbackPage } from "./pages/callback-page";
 import { HomePage } from "./pages/home-page";
 import { NotFoundPage } from "./pages/not-found-page";
 import { ProfilePage } from "./pages/profile-page";
-import { ProtectedPage } from "./pages/protected-page";
-import { PublicPage } from "./pages/public-page";
+import { SymptomLog } from "./pages/symptom-log";
+import { ConditionPage } from "./pages/condition-page";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -29,10 +29,10 @@ export const App = () => {
         path="/profile"
         element={<AuthenticationGuard component={ProfilePage} />}
       />
-      <Route path="/public" element={<PublicPage />} />
+      <Route path="/conditions" element={<ConditionPage />} />
       <Route
-        path="/protected"
-        element={<AuthenticationGuard component={ProtectedPage} />}
+        path="/symptomLog"
+        element={<AuthenticationGuard component={SymptomLog} />}
       />
       <Route
         path="/admin"

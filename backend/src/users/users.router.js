@@ -5,22 +5,21 @@ const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
 const usersRouter = express.Router();
 
-/** GET /[id] => { user }
- *
- * Returns { firstName, lastName }
- *
- **/
+// get user by id 
 
 usersRouter.get("/:id", validateAccessToken, async function (req, res, next) {
-   
+   console.log(req.params.id);
     try {
       const user = await User.getUser(req.params.id);
+      console.log(user);
       return res.json({ user });
     } catch (err) {
   
       return next(err);
     }
   });
+
+//get all users
 
   usersRouter.get("/", async function (req, res, next) {
     console.log("users route running");
@@ -33,6 +32,10 @@ usersRouter.get("/:id", validateAccessToken, async function (req, res, next) {
       return next(err);
     }
   });
+// register new user
+  
+
+// add new condition to user 
 
 
 module.exports = { usersRouter };

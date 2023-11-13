@@ -7,6 +7,8 @@ const { messagesRouter } = require("./messages/messages.router");
 const { errorHandler } = require("./middleware/error.middleware");
 const { notFoundHandler } = require("./middleware/not-found.middleware");
 const { usersRouter } = require("./users/users.router");
+const { conditionsRouter } = require("./conditions/conditions.router");
+const { symptomsRouter } = require("./symptoms/symptoms.router");
 
 dotenv.config();
 
@@ -62,6 +64,8 @@ app.use(
 app.use("/api", apiRouter);
 apiRouter.use("/messages", messagesRouter);
 apiRouter.use("/users", usersRouter);
+apiRouter.use("/conditions", conditionsRouter);
+apiRouter.use("/symptoms", symptomsRouter);
 
 app.use(errorHandler);
 app.use(notFoundHandler);
