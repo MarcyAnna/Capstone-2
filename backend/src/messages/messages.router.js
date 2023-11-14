@@ -19,6 +19,7 @@ messagesRouter.get("/public", (req, res) => {
 });
 
 messagesRouter.get("/protected", validateAccessToken, (req, res) => {
+  
   const message = getProtectedMessage();
 
   res.status(200).json(message);

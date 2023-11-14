@@ -3,9 +3,13 @@ import React, { useEffect, useState } from "react";
 import { CodeSnippet } from "../components/code-snippet";
 import { PageLayout } from "../components/page-layout";
 import { getUser } from "../services/user.service";
+import { getSymptomLogByName, getSymptomLogByDate } from "../services/symptoms.service";
 
 export const ProfilePage = () => {
   const [user, setUser] = useState({});
+  const [symptomData, setSymptomData] = useState(null);
+  const [symptomName, setSymptomName] = useState(""); 
+  const [logDate, setLogDate] = useState("");
 
   const { getAccessTokenSilently } = useAuth0();
 
@@ -37,6 +41,18 @@ export const ProfilePage = () => {
     };
   }, [getAccessTokenSilently]);
 
+  const handleGetSymptomLogByName = async () => {
+    const accessToken = await getAccessTokenSilently();
+    const logData = await getSymptomLogByName(accessToken, symptomName);
+    setSymptomData(logData);
+  };
+
+  const handleGetSymptomLogByDate = async () => {
+    const accessToken = await getAccessTokenSilently();
+    const logData = await getSymptomLogByDate( accessToken, logDate);
+    setSymptomData(logData);
+  };
+
 
   const conditionsToRender = user?.conditions || [];
 
@@ -63,6 +79,30 @@ export const ProfilePage = () => {
                 <h2 className="profile__title">{user.firstName}</h2>
               </div>
             </div>
+            <div>
+            <label>Symptom ID:</label>
+            <input
+              type="text"
+              value={symptomName}
+              onChange={(e) => setSymptomName(e.target.value)}
+            />
+            <button onClick={handleGetSymptomLogByName}>Get Symptom Log by ID</button>
+            <div>
+            <label>Log Date:</label>
+            <input
+              type="date"
+              value={logDate}
+              onChange={(e) => setLogDate(e.target.value)}
+            />
+            <button onClick={handleGetSymptomLogByDate}>Get Symptom Log by Date</button>
+            {symptomData && (
+            <div>
+              <h2>Symptom Log Data:</h2>
+              <pre>{JSON.stringify(symptomData, null, 2)}</pre>
+            </div>
+          )}
+          </div>
+          </div>
             <div className="profile__details">
               <CodeSnippet
                 title="Decoded ID Token"

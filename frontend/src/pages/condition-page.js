@@ -1,16 +1,22 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { CodeSnippet } from "../components/code-snippet";
 import { PageLayout } from "../components/page-layout";
-import { getConditions } from "../services/condition.service";
+import { getConditions, addCondition } from "../services/condition.service";
 
 export const ConditionPage = () => {
   const [conditions, setConditions] = useState([]);
+
+  const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     let isMounted = true;
 
     const getCondition = async () => {
-      const { data, error } = await getConditions();
+
+      const accessToken = await getAccessTokenSilently();
+
+      const { data, error } = await getConditions(accessToken);
 
       if (!isMounted) {
         return;
@@ -30,9 +36,17 @@ export const ConditionPage = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [getAccessTokenSilently]);
 
-  
+  // add condition to user's profile
+  async function setCondition(evt, condition) {
+    evt.preventDefault();
+    const accessToken = await getAccessTokenSilently();
+    console.log("add condition", condition.id)
+    await addCondition(accessToken, condition.id);
+  }
+
+
 
   return (
     <PageLayout>
@@ -44,7 +58,8 @@ export const ConditionPage = () => {
         <ul>
         {conditions.map((condition, index) => (
           <li key={index}>
-            <strong>{condition.conditionName}</strong>: {condition.description}
+            <strong>{condition.conditionName}</strong>: {condition.description}   |
+            <button onClick={(evt) => setCondition(evt, condition)} >Add to Profile</button>
           </li>
         ))}
       </ul>

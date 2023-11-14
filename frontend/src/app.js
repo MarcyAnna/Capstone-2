@@ -10,6 +10,7 @@ import { NotFoundPage } from "./pages/not-found-page";
 import { ProfilePage } from "./pages/profile-page";
 import { SymptomLog } from "./pages/symptom-log";
 import { ConditionPage } from "./pages/condition-page";
+import { RegisterPage } from "./pages/register-page";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -29,7 +30,11 @@ export const App = () => {
         path="/profile"
         element={<AuthenticationGuard component={ProfilePage} />}
       />
-      <Route path="/conditions" element={<ConditionPage />} />
+      <Route
+        path="/register"
+        element={<AuthenticationGuard component={RegisterPage} />}
+      />
+      <Route path="/conditions" element={<AuthenticationGuard component={ConditionPage} />} />
       <Route
         path="/symptomLog"
         element={<AuthenticationGuard component={SymptomLog} />}

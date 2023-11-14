@@ -5,17 +5,20 @@ const db = require("../db");
 class User {
 
     // register a new user and save info to database
-    static async register( {id, firstName, lastName, email, DOB} ) {
+    static async register( id, firstName, lastName, DOB, email ) {
+        console.log("Made it to the query");
+        console.log(id, firstName, lastName, DOB, email);
         const result = await db.query(
             `INSERT INTO users
             (id, 
             first_name,
             last_name,
-            email,
-            dob)
+            dob,
+            email
+            )
             VALUES ($1, $2, $3, $4, $5)
             RETURNING first_name AS "firstName", last_name AS "lastName"`,
-            [id, firstName, lastName, email, DOB],
+            [id, firstName, lastName, DOB, email],
         );
         const user = result.rows[0];
         return user;
@@ -43,18 +46,6 @@ class User {
     }
 
         return user;
-    }
-    //add a condition to user profile
-    static async addCondition(user_id, condition_id) {
-        const result = await db.query(`
-        INSERT INTO users_conditions 
-        (user_id, condition_id) VALUES 
-        ($1, $2)`,
-        [user_id, condition_id]);
-        
-        const newCondition = result.rows[0];
-        return newCondition;     
-        
     }
 
 

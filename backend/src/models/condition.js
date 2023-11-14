@@ -8,11 +8,26 @@ class Condition {
  // Get all conditions 
     static async getConditions() {
         const result = await db.query(
-            `SELECT name as "conditionName",
+            `SELECT id,
+            name as "conditionName",
             description FROM conditions`
         );
 
         return result.rows;
+    }
+
+ //add a condition to user profile
+    static async addCondition(user_id, condition_id) {
+        console.log('Query for adding condition', user_id, condition_id);
+        const result = await db.query(`
+        INSERT INTO users_conditions 
+        (user_id, condition_id) VALUES 
+        ($1, $2)`,
+        [user_id, condition_id.conditionId]);
+        
+        const newCondition = result.rows[0];
+        return newCondition;     
+        
     }
 
   
