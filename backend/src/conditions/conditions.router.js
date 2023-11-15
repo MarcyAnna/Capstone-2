@@ -10,7 +10,6 @@ const conditionsRouter = express.Router();
 conditionsRouter.get("/", async function (req, res, next) {
   try {
     const conditions = await Condition.getConditions();
-    console.log(conditions);
     return res.json({ conditions });
   } catch (err) {
     console.log(err);
@@ -21,8 +20,6 @@ conditionsRouter.get("/", async function (req, res, next) {
 // Add condition to user profile
 
 conditionsRouter.post("/", validateAccessToken, async function (req, res, next) {
-  console.log("add new condition running");
-  console.log(req.body);
   const conId = req.body;
   const auth = req.auth;
   try {

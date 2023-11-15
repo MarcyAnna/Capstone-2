@@ -71,5 +71,8 @@ app.use(errorHandler);
 app.use(notFoundHandler);
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  //console.log(`Listening on port ${PORT}`);
 });
+
+exports.app = app;
+exports.apiRouter = apiRouter;

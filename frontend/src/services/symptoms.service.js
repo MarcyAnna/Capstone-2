@@ -22,7 +22,6 @@ export const getSymptoms = async (accessToken) => {
   };
 
 export const submitSymptomLog = async (accessToken, symptom, severity) => {
-  console.log('running log symptom');
     const config = {
         url: `${apiServerUrl}/api/symptoms`,
         method: "POST",
@@ -48,7 +47,6 @@ export const submitSymptomLog = async (accessToken, symptom, severity) => {
 }
 
 export const getSymptomLogByName = async (accessToken, symptomName) => {
-  console.log(symptomName);
   const config = {
     url: `${apiServerUrl}/api/symptoms/name`,
     method: "GET", 
@@ -70,7 +68,7 @@ export const getSymptomLogByName = async (accessToken, symptomName) => {
 };
 
 export const getSymptomLogByDate = async (accessToken, symptomDate ) => {
-  console.log(symptomDate);
+  
   const config = {
     url: `${apiServerUrl}/api/symptoms/date`,
     method: "GET", 

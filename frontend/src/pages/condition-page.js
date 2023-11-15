@@ -63,7 +63,7 @@ export const ConditionPage = () => {
           </li>
         ))}
       </ul>
-          <CodeSnippet title="Public Message" code={JSON.stringify(conditions, null, 2)} />
+          <CodeSnippet title="Condition Info" code={JSON.stringify(conditions, null, 2)} />
         </div>
       </div>
     </PageLayout>

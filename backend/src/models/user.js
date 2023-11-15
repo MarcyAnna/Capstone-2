@@ -6,8 +6,6 @@ class User {
 
     // register a new user and save info to database
     static async register( id, firstName, lastName, DOB, email ) {
-        console.log("Made it to the query");
-        console.log(id, firstName, lastName, DOB, email);
         const result = await db.query(
             `INSERT INTO users
             (id, 
@@ -17,7 +15,7 @@ class User {
             email
             )
             VALUES ($1, $2, $3, $4, $5)
-            RETURNING first_name AS "firstName", last_name AS "lastName"`,
+            RETURNING id, first_name AS "firstName", last_name AS "lastName"`,
             [id, firstName, lastName, DOB, email],
         );
         const user = result.rows[0];
@@ -46,6 +44,14 @@ class User {
     }
 
         return user;
+    }
+
+    static async deleteUser(id) {
+        const result  = await db.query(`DELETE FROM users WHERE id = $1 RETURNING id`,
+        [id]);
+        const user = result.rows[0];
+
+        if (!user) throw error(`No user with id ${id}`);
     }
 
 

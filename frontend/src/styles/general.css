@@ -42,6 +42,10 @@ h6 {
   color: rgba(0, 0, 0, 0.86);
 }
 
+h3, h4 {
+  color: var( --white);
+}
+
 h1,
 h2,
 h3 {
@@ -109,6 +113,9 @@ select,
 textarea {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  border-radius: .5rem;
+  margin-top: 1rem;
+  margin-left: .5rem;
 }
 button,
 input,

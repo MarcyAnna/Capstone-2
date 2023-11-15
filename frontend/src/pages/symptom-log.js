@@ -26,8 +26,6 @@ export const SymptomLog = () => {
       }
 
       if (data && data.symptoms) {
-        console.log(data);
-        console.log(data.symptoms);
         setSymptoms(data.symptoms);
       }
 
@@ -67,7 +65,8 @@ export const SymptomLog = () => {
         <h1 id="page-title" className="content__title">
           Daily Symptom Log
         </h1>
-        <p>Add a symptom to your daily log along with the severity with 1 being low and 10 being intense</p>
+        <h3>Log Today's Symptoms</h3>
+        <h4>Select a symptom you are experiencing today and then pick the itensity of it with 10 being the most severe</h4>
         <div className="content__body">
           <div id="page-description">
             <form onSubmit={handleSubmit}>
@@ -101,7 +100,7 @@ export const SymptomLog = () => {
 
             </form>
           </div>
-          <CodeSnippet title="Protected Message" code={JSON.stringify(symptoms, null, 2)} />
+          <CodeSnippet title="Symptom List" code={JSON.stringify(symptoms, null, 2)} />
         </div>
       </div>
     </PageLayout>

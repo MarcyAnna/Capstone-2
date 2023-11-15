@@ -9,11 +9,8 @@ const usersRouter = express.Router();
 
 usersRouter.get("/", validateAccessToken, async function (req, res, next) {
   const auth = req.auth;
-  console.log(auth.payload); //user id
-  console.log(auth.payload["https://myhealth/email"]); //email
   try {
     const user = await User.getUser(auth.payload.sub);
-    console.log(user);
     return res.json({ user });
   } catch (err) {
 
@@ -26,7 +23,6 @@ usersRouter.get("/", validateAccessToken, async function (req, res, next) {
 usersRouter.get("/", async function (req, res, next) {
   try {
     const users = await User.findAll();
-    console.log(users);
     return res.json({ users });
   } catch (err) {
     console.log(err);

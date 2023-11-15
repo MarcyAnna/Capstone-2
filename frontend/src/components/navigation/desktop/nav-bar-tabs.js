@@ -12,7 +12,6 @@ export const NavBarTabs = () => {
           <NavBarTab path="/profile" label="Profile" />
           <NavBarTab path="/conditions" label="Conditions" />
           <NavBarTab path="/symptomLog" label="SymptomLog" />
-          <NavBarTab path="/admin" label="Admin" />
         </>
       )}
     </div>

@@ -20,7 +20,7 @@ class Symptom {
 
     // create daily symptom log
     static async createSymptomLog(user_id, symptomName, severity) {
-        console.log(user_id, symptomName, severity);
+        
             const result = await db.query(
                 `INSERT INTO daily_symptoms_log
             (user_id, symptom_name, severity)
@@ -35,8 +35,7 @@ class Symptom {
 
     // get symptom log by date
     static async getLogByDate({ date, user_id }) {
-        console.log("date query");
-        console.log(date);
+       
         const result = await db.query(`
         SELECT symptom_name, severity FROM daily_symptoms_log
         WHERE log_date = $1::date AND 
@@ -51,8 +50,7 @@ class Symptom {
 
     // get all dates of symptom log by symptom id
     static async getLogByName(  user_id , symptom_name) {
-        console.log("symptom name query");
-        console.log(symptom_name, user_id);
+      
         const result = await db.query(`
         SELECT log_date FROM daily_symptoms_log
         WHERE symptom_name = $1 AND 
@@ -61,7 +59,6 @@ class Symptom {
 
         const logBySymptom = result.rows;
 
-        console.log(logBySymptom);
 
         return logBySymptom;
     }

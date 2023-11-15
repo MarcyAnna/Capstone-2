@@ -18,7 +18,6 @@ class Condition {
 
  //add a condition to user profile
     static async addCondition(user_id, condition_id) {
-        console.log('Query for adding condition', user_id, condition_id);
         const result = await db.query(`
         INSERT INTO users_conditions 
         (user_id, condition_id) VALUES 
