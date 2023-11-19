@@ -19,7 +19,7 @@ body {
 }
 
 body {
-  background-color: var(--dim-gray);
+  background-color: var(--slate-gray);
 
   color: var(--white);
   font-family: var(--font-primary);
@@ -46,6 +46,10 @@ h3, h4 {
   color: var( --white);
 }
 
+h3 {
+  text-decoration: underline turquoise;
+}
+
 h1,
 h2,
 h3 {
@@ -56,8 +60,8 @@ h3 {
 h4,
 h5,
 h6 {
-  margin-top: 1.6rem;
-  margin-bottom: 1.6rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 h1 {
@@ -88,6 +92,11 @@ p {
   margin: 0 0 1.6rem;
 }
 
+li {
+  margin: 1.5rem;
+}
+
+
 strong {
   font-weight: 500;
 }
@@ -113,9 +122,6 @@ select,
 textarea {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  border-radius: .5rem;
-  margin-top: 1rem;
-  margin-left: .5rem;
 }
 button,
 input,
@@ -124,6 +130,18 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  border: 2px solid gray;
+  border-radius: .5rem;
+  margin-top: 1rem;
+  margin-left: .5rem;
+  
+}
+
+
+
+button {
+  color: var( --white);
+  background-color: var( --indigo);
 }
 
 a {
@@ -148,6 +166,8 @@ pre {
 code {
   color: var(--emerald);
 }
+
+
 
 #root {
   height: 100%;
