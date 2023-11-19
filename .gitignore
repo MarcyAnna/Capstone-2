@@ -4,3 +4,5 @@
 *\ 2
 *\ 2.md
 *\ 2.json
+/frontend/node_modules/*
+/backend/node_modules/*
