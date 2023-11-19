@@ -35,7 +35,7 @@ export const RegisterPage = () => {
                 <h1 id="page-title" className="content__title">
                     Set Up Your Profile
         </h1>
-                <div className="register-form">
+                <div className="content-form" id="register-form">
                     <form onSubmit={handleSubmit}>
 
                         <div className="form-group">

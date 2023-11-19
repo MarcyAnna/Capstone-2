@@ -10,7 +10,8 @@ class Condition {
         const result = await db.query(
             `SELECT id,
             name as "conditionName",
-            description FROM conditions`
+            description FROM conditions
+            ORDER BY name`
         );
 
         return result.rows;

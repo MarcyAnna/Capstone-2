@@ -9,13 +9,14 @@
 
   /* responsive */
 
-  padding: 48px;
+  padding: 20px;
 }
 
 .content__title {
-  margin-top: 0;
-
-  color: var(--white);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: var( --white);
+  text-decoration: underline turquoise;
 }
 
 .content__body {
@@ -25,9 +26,40 @@
   line-height: 2.4rem;
 }
 
+.content-form {
+  max-width: 400px; /* Adjust the width as needed */
+  margin: 0 auto;   /* Center the form */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+select, button {
+  margin-bottom: 16px;
+}
+
+
+#register-form {
+  margin-top: 3rem;
+  font-size: 2rem;
+  line-height: 1.5em;
+}
+
+.page-navigate {
+  color: indigo;
+}
+
 #page-description {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 #page-description span {
@@ -36,6 +68,18 @@
 
 #page-description span:last-child {
   margin-bottom: 0;
+}
+
+#symptom-log {
+  border: 3px solid black;
+  border-radius: .75rem;
+  color: indigo;
+  background-color: turquoise;
+  padding: 1rem 0 2rem 5rem;
+}
+
+#symptom-log h3 {
+  color: indigo;
 }
 
 @media only screen and (max-width: 480px) {
