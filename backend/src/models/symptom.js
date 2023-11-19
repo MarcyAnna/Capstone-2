@@ -9,7 +9,8 @@ class Symptom {
     static async getSymptoms() {
         const result = await db.query(
             `SELECT name as "symptomName",
-            description FROM symptoms`
+            description FROM symptoms
+            ORDER BY name`
         );
 
         const symptoms = result.rows.map(row => row.symptomName);
@@ -44,7 +45,7 @@ class Symptom {
 
 
         const logByDate = result.rows;
-
+        
         return logByDate;
     }
 
@@ -58,7 +59,6 @@ class Symptom {
             [symptom_name, user_id]);
 
         const logBySymptom = result.rows;
-
 
         return logBySymptom;
     }
